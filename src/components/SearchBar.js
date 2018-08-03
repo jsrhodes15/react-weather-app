@@ -4,7 +4,9 @@ class SearchBar extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { term: '' };
+		this.state = {
+		  term: ''
+		};
 
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -18,12 +20,11 @@ class SearchBar extends Component {
 
 	onFormSubmit(event) {
 		// For form elements, use preventDefault() to override
-		// default browser actions (in this case, would attempt a POST to server)
+		// default browser actions (in this case, would attempt a refresh the page)
 		event.preventDefault();
-
 		// We need to go and fetch weather data, call callback passed from parent
 		this.props.fetchWeather(this.state.term);
-		// Mutate local state independent of Redux store
+
 		this.setState({ term: '' });
 	}
 
@@ -41,7 +42,7 @@ class SearchBar extends Component {
 					onChange={this.onInputChange}
 				/>
 				<span className="input-group-btn">
-					<button type="submit" className="btn btn-secondary">Submit</button>
+					<button type="submit" className="btn btn-primary">Submit</button>
 				</span>
 			</form>
 		);
