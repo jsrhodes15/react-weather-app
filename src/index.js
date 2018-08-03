@@ -1,21 +1,13 @@
+// React must be imported in every file that uses JSX so that its in scope
 import React from 'react';
+// Only needed for the entry point to mount React
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-// Import this middleware for handling AJAX requests
-import ReduxPromise from 'redux-promise';
-// Import logger middleware
-import createLogger from 'redux-logger';
-import reducers from './reducers';
-
+// our build config allows for importing CSS also
 import App from './components/App';
+
 import './styles/index.css';
 
-// This applies middleware to the store
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise, createLogger)(createStore);
+// find element to mount React app to.
+const container = document.getElementById('root');
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.getElementById('root'));
+if (container) ReactDOM.render(<App />, container);

@@ -1,3 +1,8 @@
+body {
+  width: 85%;
+  margin: auto;
+}
+
 .input-group {
   margin: 20px 0px;
 }
