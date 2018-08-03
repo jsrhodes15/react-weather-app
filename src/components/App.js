@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from '../../../../../Desktop/src/containers/search_bar';
-import WeatherList from '../../../../../Desktop/src/containers/weather_list';
+import SearchBar from '../containers/SearchBar';
+import WeatherList from '../containers/WeatherList';
 
 export default class App extends Component {
   render() {

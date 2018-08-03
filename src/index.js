@@ -6,9 +6,10 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 // Import logger middleware
 import createLogger from 'redux-logger';
-
-import App from './components/app';
 import reducers from './reducers';
+
+import App from './components/App';
+import './styles/index.css';
 
 const loggerMiddleware = createLogger();
 // This applies middleware to the store
@@ -18,4 +19,4 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <App />
   </Provider>
-  , document.querySelector('.container'));
+  , document.getElementById('root'));
