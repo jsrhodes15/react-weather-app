@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // but with every action creator wrapped into a dispatch call so they may be invoked directly
 import { bindActionCreators } from 'redux';
 // Pull in the action creator that we intend to use
-import { fetchWeather } from '../../../../../Desktop/src/actions/index';
+import { fetchWeather } from '../actions';
 
 // The SearchBar needs to have the ability to talk to Redux to modify state,
 // so we promote it to a container

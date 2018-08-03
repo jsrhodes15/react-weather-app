@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Chart from '../components/chart';
-import GoogleMap from '../components/google_map';
+import _map from 'lodash/map';
+import Chart from '../components/Chart';
+import GoogleMap from '../components/Map';
 
 class WeatherList extends Component {
   renderWeather(cityData) {
     const name = cityData.city.name;
-    const temps = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp * (9/5) - 459.67);
+    const temps = _map(cityData.list.map(weather => weather.main.temp), (temp) => temp * (9/5) - 459.67);
     const pressure = cityData.list.map(weather => weather.main.pressure);
     const humidity = cityData.list.map(weather => weather.main.humidity);
     // This (below) is destructuring. Pulling these two properties off of the 'coord' property
