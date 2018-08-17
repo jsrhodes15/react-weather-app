@@ -12,9 +12,10 @@ export default function(state = [], action) {
   // Start swtch statement to determine how to update state
   switch (action.type) {
     case FETCH_WEATHER:
-      return handleWeatherData(state, action)
+      return handleWeatherData(state, action);
+    default:
+      return state;
   }
-  return state;
 }
 
 

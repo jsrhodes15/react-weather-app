@@ -18,7 +18,14 @@ class WeatherList extends Component {
 
     return (
       <tr key={name}>
-        <td><GoogleMap lon={lon} lat={lat} /></td>
+        <td><GoogleMap
+          lon={lon}
+          lat={lat}
+          containerElement={<div style={{height: '100%'}}/> }
+          mapElement={<div style={{height: '100%'}}/>}
+          onMapLoad={() => {}}
+          onMapClick={() => {}}
+        /></td>
         <td><Chart data={temps} color="orange" units="F" /></td>
         <td><Chart data={pressure} color="green" units="hPa" /></td>
         <td><Chart data={humidity} color="black" units="%" /></td>
