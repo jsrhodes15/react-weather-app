@@ -11,9 +11,9 @@ import reducers from './reducers';
 import App from './components/App';
 import './styles/index.css';
 
-const loggerMiddleware = createLogger();
+// const loggerMiddleware = createLogger();
 // This applies middleware to the store
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise, loggerMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise, createLogger)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
