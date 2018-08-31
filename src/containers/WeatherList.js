@@ -53,11 +53,13 @@ class WeatherList extends Component {
 }
 
 function mapStateToProps({ weather }) {
-  return { weather };
+  return {
+    weather
+  };
 }
 // The above is a bit of ES6 syntact sugar. Same as:
 //  function mapStateToProps(state) {
-//    return {weather: state.weather}
+//    return { weather: state.weather }
 //  }
 
 export default connect(mapStateToProps)(WeatherList);

@@ -11,7 +11,6 @@ import reducers from './reducers';
 import App from './components/App';
 import './styles/index.css';
 
-// const loggerMiddleware = createLogger();
 // This applies middleware to the store
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise, createLogger)(createStore);
 

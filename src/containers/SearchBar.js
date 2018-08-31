@@ -62,6 +62,8 @@ class SearchBar extends Component {
 
 // Anything returned from this function will end up as props
 // on the SearchBar container
+
+// eslint-disable-next-line no-unused-vars
 function mapDispatchToProps(dispatch) {
 	// Whenever fetchWeather is called, the result should be passed
 	// to all of our reducers
@@ -72,4 +74,7 @@ function mapDispatchToProps(dispatch) {
 // Passing in null as first argument because this function is supposed to
 // map our dispatch to the props of our container, it is supposed
 // to go second. We are saying that we don't need state here
-export default connect(null, {fetchWeather})(SearchBar);
+export default connect(null, {
+	// instead of mDTP function, we can simply pass an object literal as second arg to bind our action creators
+	fetchWeather
+})(SearchBar);

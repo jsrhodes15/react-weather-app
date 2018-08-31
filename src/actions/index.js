@@ -6,6 +6,13 @@ const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KE
 // Use constants to keep action types consistent between action creators
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
+function setWeather(weatherData) {
+  return {
+    type: FETCH_WEATHER,
+    payload: weatherData
+  };
+}
+
 export function fetchWeather(city) {
   // Build URL to call API
   const url = `${ROOT_URL}&q=${city},us`;
@@ -15,10 +22,7 @@ export function fetchWeather(city) {
 
   // Action Creators always have to return an action. And an action
   // is an Object which ALWAYS has to have a type!
-  return {
-    type: FETCH_WEATHER,
-    payload: request
-  };
+  return setWeather(request);
 }
 
 // This action is taking advantage of 'Redux-Promise' to handle a promise that
