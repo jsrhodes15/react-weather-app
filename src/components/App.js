@@ -21,10 +21,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-      	<SearchBar
-          weather={this.state.data}
-          fetchWeather={this.fetchWeather} />
-
+      	<SearchBar fetchWeather={this.fetchWeather} />
         <WeatherList weather={this.state.data} />
       </div>
     );
