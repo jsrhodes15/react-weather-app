@@ -1,52 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class SearchBar extends Component {
-	constructor(props) {
-		super(props);
+const SearchBar = ({ fetchWeather }) => {
+  const [term, setTerm] = useState('');
 
-		this.state = {
-		  term: ''
-		};
+  const handleChange = (event) => {
+    // Declaratively set the state of the input field
+    // (we tell the field what the state is, not the other way around)
+    setTerm(event.target.value);
+  };
 
-		this.onInputChange = this.onInputChange.bind(this);
-		this.onFormSubmit = this.onFormSubmit.bind(this);
-	}
+  const handleSubmit = async (event) => {
+    // For form elements, use preventDefault() to override
+    // default browser actions (in this case, would attempt a refresh the page)
+    event.preventDefault();
+    // We need to go and fetch weather data, call callback passed from parent
+    await fetchWeather(term);
 
-	onInputChange(event) {
-		// Declaratively set the state of the input field
-		// (we tell the field what the state is, not the other way around)
-		this.setState({ term: event.target.value });
-	}
+    setTerm('');
+  };
 
-	onFormSubmit(event) {
-		// For form elements, use preventDefault() to override
-		// default browser actions (in this case, would attempt a refresh the page)
-		event.preventDefault();
-		// We need to go and fetch weather data, call callback passed from parent
-		this.props.fetchWeather(this.state.term);
-
-		this.setState({ term: '' });
-	}
-
-
-
-	render() {
-		return (
-			<form
-				onSubmit={this.onFormSubmit}
-				className="input-group">
-				<input
-					placeholder="Get a five day forecast in your favorite U.S. city"
-					className="form-control"
-					value={this.state.term}
-					onChange={this.onInputChange}
-				/>
-				<span className="input-group-btn">
-					<button type="submit" className="btn btn-primary">Submit</button>
-				</span>
-			</form>
-		);
-	}
-}
+  return (
+    <form onSubmit={handleSubmit} className="input-group">
+      <input
+        placeholder="Get a five day forecast in your favorite U.S. city"
+        className="form-control"
+        value={term}
+        onChange={handleChange}
+      />
+      <span className="input-group-btn">
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </span>
+    </form>
+  );
+};
 
 export default SearchBar;

@@ -1,29 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import WeatherList from './WeatherList';
-import axios from "axios";
+import axios from 'axios';
 
-const API_KEY = '5caab54f4305a216d19277b929799c84';
-const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
 
-export default class App extends Component {
-  state = {
-    data: []
-  };
+const App = () => {
+  const [data, setData] = useState([]);
 
-  fetchWeather = async (city) => {
-    const currentData = this.state.data;
-
+  const fetchWeather = async (city) => {
     const response = await axios.get(`${ROOT_URL}&q=${city},us`);
-    this.setState({ data: [response.data, ...currentData] });
+    setData((state) => [response.data, ...state]);
   };
 
-  render() {
-    return (
-      <div className="container">
-      	<SearchBar fetchWeather={this.fetchWeather} />
-        <WeatherList weather={this.state.data} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container">
+      <SearchBar fetchWeather={fetchWeather} />
+      <WeatherList weather={data} />
+    </div>
+  );
+};
+
+export default App;
